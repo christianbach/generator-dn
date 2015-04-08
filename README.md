@@ -1,4 +1,4 @@
-# Flight generator
+# DN generator
 
 [![Build Status](https://secure.travis-ci.org/flightjs/generator-flight.png?branch=master)](http://travis-ci.org/flightjs/generator-flight)
 
@@ -22,7 +22,7 @@ These tools will help manage your dependencies and generate the boilerplate
 Flight application.
 
 ```
-npm install -g generator-flight
+npm install -g generator-dn
 ```
 
 Make a new directory, and `cd` into it:
@@ -39,7 +39,7 @@ You're now ready to generate an app!
 To generate a Flight-based application:
 
 ```
-yo flight <app-name>
+yo dn <app-name>
 ```
 
 **N.B.** All your Node and client-side dependencies will be installed
@@ -50,9 +50,9 @@ automatically unless you include the `--skip-install` option.
 
 Available generators (to be run in the root directory of a project).
 
-* `flight <app-name>` (aka `flight:app`)
-* `flight:component <component-name>`
-* `flight:mixin <mixin-name>`
+* `dn <app-name>` (aka `flight:app`)
+* `dn:component <component-name>`
+* `dn:mixin <mixin-name>`
 * `flight:page <page-name>`
 * `flight:all`
 
