@@ -2,13 +2,19 @@
   "name": "<%= name %>",
   "version": "0.0.0",
   "dependencies": {
-    "jquery": "2.x.x",
-    "flight": "1.x.x",
-    "requirejs": "~2.1.5"<% if (normalize) { %>,
-    "normalize-css": "3.x.x"<% } %><% if (bootstrap) { %>,
-    "components-bootstrap": "3.x.x"<% } %>
+    "jquery": ">=1.8.0",
+    "hammerjs": "2.0.4",
+    "flight": "1.5.0",
+    "iframe-resizer": "2.6.2",
+    "hogan": "3.0.2",
+    "modernizr": "~2.8.3",
+    "fastclick": "~1.0.3",
+    "snabbt.js": "0.4.0",
+    "flight-with-child-components": "~0.2.3",
+    "es5-shim": "~4.1.0"
   },
   "devDependencies": {
-    "jasmine-flight": "3.x.x"
+    "jasmine-jquery": "~2.1.0",
+    "webpack-jasmine-flight": "andrewk/webpack-jasmine-flight#~5.0.0"
   }
 }
