@@ -1,0 +1,9 @@
+{
+	"font-base":	"16px",
+	"screen_xxs":	"350px",
+	"screen_xs":	"480px",
+	"screen-sm":	"768px",
+	"screen-md":	"992px",
+	"screen-lg":	"1200px",
+	"screen-hd":	"1400px"
+}

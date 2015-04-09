@@ -1,0 +1,114 @@
+{
+  "distDir": "content/scripts/dist",
+  "coreDir": "",
+  "rootDir": "",
+  "scriptCoreDir": "BonnierNews.Core/BonnierNews.Web.ScriptLibrary/",
+  "scriptDir": "content/scripts/",
+  "contentDir": "content/",
+  "solutionDir": "./DagensNyheter.Web.Ui.sln",
+  "less": {
+    "main": "content/less/main.less",
+    "deps": ["config", "mixins", "modules"],
+    "development": {
+      "sourceMap": true,
+      "cleancss": false,
+      "compress": false
+    },
+    "production": {
+      "sourceMap": false,
+      "cleancss": false,
+      "compress": false
+    },
+    "outputSprites": "content/less/sprites.less"
+  },
+  "css": {
+    "browsers": ["> 1%", "ie 8", "ie 9"],
+    "outputSharedConfig": "content/less/config/shared-config.less",
+    "outputSpriteStandard": "content/less/sprites/standard.less",
+    "outputSpriteRetina": "content/less/sprites/retina.less",
+    "outputLessCompiled": "content/css/dnse.compiled.css",
+    "outputCombined": "content/css/dnse.combined.css",
+    "outputCombinedMinified": "content/css/dnse.min.css",
+    "outputLegacyCombined": "content/css/dnse.combined.legacy.css",
+    "outputLegacyCombinedMinified": "content/css/dnse.legacy.min.css"
+  },
+  "js": {
+    "outputDistCombinedPath": "Content/scripts/dist/",
+    "outputDistCombinedFileNameStart": "prio",
+    "outputDistCombinedFileNameCombined": "combined",
+    "outputDistCombinedFileNameMin": "min",
+    "outputDistCombinedFileNameEnd": "js",
+    "outputDistCombined": "<%= settings.js.outputDistCombinedPath %><%= settings.js.outputDistCombinedFileNameStart %>.<%= settings.js.outputDistCombinedFileNameCombined %>.<%= settings.js.outputDistCombinedFileNameEnd %>",
+    "outputSharedConfig": "Content/scripts/shared-config.js",
+    "webpackUserSettingsFileName": "webpack.config.<%= settings.js.outputDistCombinedFileNameStart %>.<%= settings.js.outputDistCombinedFileNameEnd %>",
+    "outputDistCombinedMinified": "Content/scripts/dist/<%= settings.js.outputDistCombinedFileNameStart %>.<%= settings.js.outputDistCombinedFileNameMin %>.<%= settings.js.outputDistCombinedFileNameEnd %>",
+    "outputDistCombinedFiles": ["<%= settings.rootDir %><%= settings.js.outputDistCombinedPath %><%= settings.js.outputDistCombinedFileNameStart %>.<%= settings.js.outputDistCombinedFileNameCombined %>.<%= settings.js.outputDistCombinedFileNameEnd %>"]
+  },
+  "fonts": {
+    "copyFrom": "Content/fonts/*",
+    "copyTo": "Content/fonts/dist",
+    "type1": "Content/fonts/dist/*.svg",
+    "type2": "Content/fonts/dist/*.eot",
+    "type3": "Content/fonts/dist/*.woff",
+    "type4": "Content/fonts/dist/*.ttf"
+  },
+  "image": {
+    "svgFolder": "/Content/sprites/svg",
+    "outputSvgStandardPath": "/Content/sprites/",
+    "outputSvgStandard": "/Content/sprites/all-sprite.svg",
+    "outputSpriteStandard": "/Content/sprites/all-sprite-standard.png",
+    "outputSpriteRetina": "/content/sprites/all-sprite-retina.png"
+  },
+  "razor": {
+    "insertCommonStylesAndScriptsView": "/Views/Shared/_InsertCommonStylesAndScripts.cshtml",
+    "insertSpecificStylesAndScriptsView": "/Areas/Prio/Views/Shared/_InsertSpecificStylesAndScripts.cshtml"
+  },
+  "clean": {
+    "css": ["<%= settings.rootDir %>Content/css/dnse.combined.*.css", "<%= settings.rootDir %>Content/css/dnse.min.*.css", "<%= settings.rootDir %>Content/css/dnse.combined.legacy.*.css", "<%= settings.rootDir %>Content/css/dnse.legacy.min.*.css"],
+    "js": [
+      "<%= settings.rootDir %><%= settings.js.outputDistCombinedPath %><%= settings.js.outputDistCombinedFileNameStart %>.<%= settings.js.outputDistCombinedFileNameMin %>.*.<%= settings.js.outputDistCombinedFileNameEnd %>",
+      "<%= settings.rootDir %><%= settings.js.outputDistCombinedPath %><%= settings.js.outputDistCombinedFileNameStart %>.<%= settings.js.outputDistCombinedFileNameCombined %>.*.<%= settings.js.outputDistCombinedFileNameEnd %>"
+    ],
+    "sprites": ["<%= settings.rootDir %>Content/sprites/all-sprite.*.svg", "<%= settings.rootDir %>Content/sprites/all-sprite-retina.*.png", "<%= settings.rootDir %>Content/sprites/all-sprite-standard.*.png"],
+    "fonts": ["<%= settings.rootDir %>Content/fonts/dist/*"]
+  },
+  "webpack": {
+    "baseUrl": "<%= settings.rootDir %>Content/scripts"
+  },
+  "patterns": {
+    "less": "Content/less/**/*.less",
+    "specs": "Content/scripts/specs/**/*Spec.js",
+    "scripts": "Content/scripts/**/*.js",
+    "typescript": "Content/scripts/**/*.ts",
+    "excludeScripts": "Content/scripts/dist/*.js",
+    "scriptsVendor": "Content/scripts/vendor/**/*.js",
+    "grunt": "Gruntfile.js",
+    "bower": "bower.json",
+    "sprites": "Content/sprites/**/*.svg",
+    "svg": "Content/sprites/images/svg",
+    "retinaSprites": "Content/sprites/retina-images/**/*.png",
+    "sharedScripts": "/**/*.js",
+    "requirejs": "/views/**/*.js"
+  },
+  "tasks": {
+    "default": ["shared_config", "dr-svg-sprites", "css", "BonnierCore:update", "javascript"],
+    "production": ["clean", "shared_config", "dr-svg-sprites", "css-production", "BonnierCore:update", "javascript-production", "production-fonts", "hashres:production-sprites", "hashres:production-css", "string-replace:webpackhash", "assemblyinfo"],
+    "css": ["shared_config", "less:development", "autoprefixer", "css-legacy", "cssmin"],
+    "css-production": ["less:production", "autoprefixer", "css-legacy", "cssmin"],
+    "css-legacy": ["stripmq", "pixrem"],
+    "production-fonts": ["copy", "string-replace:production", "hashres:production-fonts"],
+    "javascript-production": ["jshint", "webpack-production-task"],
+    "javascript": ["webpack-development-task", "jshint"],
+    "test": ["karma:dev"],
+    "test:production": ["karma:production"],
+    "cssdocs": ["styleguide", "connect"],
+    "watch-stylesheets": ["css"],
+    "watch-sprites": ["dr-svg-sprites", "less:development"],
+    "watch-scripts": ["javascript"],
+    "watch-specs": ["test:production"],
+    "watch-core": ["BonnierCore:update", "javascript"],
+    "teamcity": ["karma:teamcity"],
+    "prod": ["clean", "shared_config", "dr-svg-sprites", "css-production", "BonnierCore:update", "bower", "javascript", "production-fonts", "hashres:production-sprites", "hashres:production-css-js"],
+    "rep": ["string-replace:production"]
+  }
+}
