@@ -1,14 +1,9 @@
 # DN generator
 
-[![Build Status](https://secure.travis-ci.org/flightjs/generator-flight.png?branch=master)](http://travis-ci.org/flightjs/generator-flight)
-
-A [Yeoman](http://yeoman.io/) generator for
-[Flight](http://flightjs.github.io/), Twitter's client-side JavaScript
-framework. Get up and running with everything you need to create an
+A [Yeoman](http://yeoman.io/) generator for DN with
+[Flight](http://flightjs.github.io/), Twitter's client-side JavaScript.
+Get up and running with everything you need to create an
 application.
-
-NOTE: A separate [Flight package generator](https://github.com/flightjs/generator-flight-package)
-is available for creating standalone Flight components.
 
 
 ## Recommended setup
@@ -28,7 +23,7 @@ npm install -g generator-dn
 Make a new directory, and `cd` into it:
 
 ```
-mkdir flight-app && cd $_
+mkdir my-app && cd $_
 ```
 
 You're now ready to generate an app!
@@ -39,7 +34,7 @@ You're now ready to generate an app!
 To generate a Flight-based application:
 
 ```
-yo dn <app-name>
+yo DN:all
 ```
 
 **N.B.** All your Node and client-side dependencies will be installed
@@ -50,96 +45,37 @@ automatically unless you include the `--skip-install` option.
 
 Available generators (to be run in the root directory of a project).
 
-* `dn <app-name>` (aka `flight:app`)
-* `dn:component <component-name>`
-* `dn:mixin <mixin-name>`
-* `flight:page <page-name>`
-* `flight:all`
+* `DN`
+* `DN:component <component-name>`
+* `DN:mixin <mixin-name>`
+* `DN:all`
 
-### flight:app
+### DN:app
 
-Scaffolds a Flight application file structure, installs all the library code
-you need, and correctly configures your test setup. The app generator will
-prompt you to optionally install Bootstrap or Normalize.css.
+Scaffolds a application file structure.
 
 Example:
 
 ```
-yo flight my_app
+yo DN
 ```
 
 Produces:
 
-```
-.
-├── app
-│   ├── bower_components
-│   │   ├── es5-shim
-│   │   ├── flight
-│   │   ├── jasmine-flight
-│   │   ├── jquery
-│   │   └── requirejs
-│   ├── css
-│   │   └── main.css
-│   ├── img
-│   ├── js
-│   │   ├── component
-│   │   ├── page
-│   │   │   └── default.js
-│   │   └── main.js
-│   ├── 404.html
-│   ├── favicon.ico
-│   ├── index.html
-│   └── robots.txt
-├── node_modules
-├── test
-│   └── test-main.js
-├── .bowerrc
-├── .gitattributes
-├── .gitignore
-├── .jshintrc
-├── .travis.yml
-├── CONTRIBUTING.md
-├── LICENSE.md
-├── README.md
-├── bower.json
-├── gulpfile.js
-├── karma.conf.js
-└── package.json
-```
+TODO
 
-#### Locally installed software
 
-Automatically installs all the Flight framework dependencies, and sets up a
-Node-based toolchain for your development workflow.
+### DN:component
 
-**via Bower**
-
-* [Flight](http://flightjs.github.io/) (and its dependencies: ES5 Shim, jQuery)
-* [RequireJS](http://requirejs.org/)
-* [Jasmine jQuery](https://github.com/velesin/jasmine-jquery) extensions
-* [Jasmine Flight](https://github.com/flightjs/jasmine-flight) extensions
-* (optional) [Bootstrap](http://getbootstrap.com/)
-* (optional) [Normalize.css](http://necolas.github.io/normalize.css)
-
-**via npm**
-
-* Flight generator (installed as a local dependency)
-* [Gulp](http://gulpjs.com/) task runner
-* [Karma](http://karma-runner.github.io/) unit test runner
-* [Node-Static](https://github.com/cloudhead/node-static/) file server
-
-### flight:component
-
-Generates a component in `app/js/component`.
+Generates a mixin component in `<baseDir>/<scriptDir>/component`.
 
 Example:
 
 ```
-yo flight:component tweet_box
+yo DN:component my-component
 ```
 
-Produces `app/js/component/tweet_box.js`:
+Produces `<baseDir>/<scriptDir>/component/my-component.js`:
 
 ```js
 define(function (require) {
@@ -154,52 +90,14 @@ define(function (require) {
 });
 ```
 
-And the test file `test/spec/component/tweet_box.spec.js`:
+And the test file `<baseDir>/<scriptDir>/specs/component/my-component.test.js`:
 
 ```js
-describeComponent('component/tweet_box', function () {
-  // Initialize the component and attach it to the DOM
-  beforeEach(function () {
-    this.setupComponent();
-  });
+'use strict';
+var component = require('component/my-component.js');
 
-  it('should be defined', function () {
-    expect(this.component).toBeDefined();
-  });
+describeComponent(component, function () {
 
-  it('should do something', function () {
-    expect(true).toBe(false);
-  });
-});
-```
-
-### flight:mixin
-
-Generates a mixin component in `app/js/component`.
-
-Example:
-
-```
-yo flight:mixin tweet_actions
-```
-
-Produces `app/js/component/with_tweet_actions.js`:
-
-```js
-define(function (require) {
-  return withTweetActions;
-
-  function withTweetActions() {
-    this.attributes({});
-    this.after('initialize', function () {});
-  }
-});
-```
-
-And the test file `test/spec/component/with_tweet_box.spec.js`:
-
-```js
-describeMixin('component/with_tweet_box', function () {
   // Initialize the component and attach it to the DOM
   beforeEach(function () {
     this.setupComponent();
@@ -210,62 +108,96 @@ describeMixin('component/with_tweet_box', function () {
   });
 
   it('should do something');
+
 });
 ```
 
-### flight:page
+And the less file `<baseDir>/<scriptDir>/less/component/my-component.less`:
 
-Generates a page component in `app/js/page`.
+```less
+/***
+ * Components: my-component
+ */
+
+ /**
+  * my-component:
+  * Something to describe your component.
+  *
+  *     @example
+  *     <div class="my-component">my-component</div>
+  */
+
+.my-component {
+  // Blocks
+  &__block {
+
+  }
+  // Modifiers
+  &--modifier {
+
+  }
+}
+```
+
+### DN:mixin
+
+Generates a mixin component in `<baseDir>/<scriptDir>/mixin`.
 
 Example:
 
 ```
-yo flight:page settings
+yo DN:mixin my-mixin
 ```
 
-Produces `app/js/page/settings.js`:
+Produces `<baseDir>/<scriptDir>/mixin/my-mixin.js`:
 
 ```js
-define(function (require) {
-  // var myComponent = require('component/my_component');
+'use strict';
 
-  return initialize;
+/**
+ * Module exports
+ */
 
-  function initialize() {
-    // myComponent.attachTo(document);
-  }
+module.exports = myMixin;
+
+/**
+ * Module function
+ */
+
+function myMixin () {
+  this.attributes({
+
+  });
+
+  this.after('initialize', function() {
+
+  });
+}
+```
+
+And the test file `<baseDir>/<scriptDir>/specs/mixins/my-mixin.test.js`:
+
+```js
+'use strict';
+var component = require('mixin/my-mixin.js');
+
+describeMixin(component, function () {
+
+  // Initialize the component and attach it to the DOM
+  beforeEach(function () {
+    this.setupComponent();
+  });
+
+  it('should be defined', function () {
+    expect(this.component).toBeDefined();
+  });
+
+  it('should do something');
+
 });
 ```
 
-### flight:all
+### DN:all
 
-Shortcut that runs `flight:app`, `flight:component my_component`, and
-`flight:mixin my_mixin`.
-
-
-## Developing your application
-
-The [generated application's README](lib/templates/application/README.md)
-contains instructions on how to run the tests, server, and other tasks.
-
-
-## Contributing to this project
-
-Anyone and everyone is welcome to contribute. Please take a moment to
-review the [guidelines for contributing](CONTRIBUTING.md).
-
-* [Bug reports](CONTRIBUTING.md#bugs)
-* [Feature requests](CONTRIBUTING.md#features)
-* [Pull requests](CONTRIBUTING.md#pull-requests)
-
-
-## Authors
-
-* Nicolas Gallagher [@necolas](https://twitter.com/necolas)
-
-
-## License
-
-Copyright 2013 Twitter, Inc and other contributors.
-
-Licensed under the MIT License.
+Shortcut that runs `DN:app`, `DN:component my_component`, and
+`DN:mixin my_mixin`.

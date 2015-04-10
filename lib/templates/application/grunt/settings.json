@@ -8,7 +8,7 @@
   "solutionDir": "./DagensNyheter.Web.Ui.sln",
   "less": {
     "main": "content/less/main.less",
-    "deps": ["config", "mixins", "modules"],
+    "deps": ["config", "mixins", "component"],
     "development": {
       "sourceMap": true,
       "cleancss": false,
@@ -26,11 +26,11 @@
     "outputSharedConfig": "content/less/config/shared-config.less",
     "outputSpriteStandard": "content/less/sprites/standard.less",
     "outputSpriteRetina": "content/less/sprites/retina.less",
-    "outputLessCompiled": "content/css/dnse.compiled.css",
-    "outputCombined": "content/css/dnse.combined.css",
-    "outputCombinedMinified": "content/css/dnse.min.css",
-    "outputLegacyCombined": "content/css/dnse.combined.legacy.css",
-    "outputLegacyCombinedMinified": "content/css/dnse.legacy.min.css"
+    "outputLessCompiled": "content/dist/dnse.compiled.css",
+    "outputCombined": "content/dist/dnse.combined.css",
+    "outputCombinedMinified": "content/dist/dnse.min.css",
+    "outputLegacyCombined": "content/dist/dnse.combined.legacy.css",
+    "outputLegacyCombinedMinified": "content/dist/dnse.legacy.min.css"
   },
   "js": {
     "outputDistCombinedPath": "Content/scripts/dist/",
@@ -83,12 +83,10 @@
     "excludeScripts": "Content/scripts/dist/*.js",
     "scriptsVendor": "Content/scripts/vendor/**/*.js",
     "grunt": "Gruntfile.js",
-    "bower": "bower.json",
     "sprites": "Content/sprites/**/*.svg",
     "svg": "Content/sprites/images/svg",
     "retinaSprites": "Content/sprites/retina-images/**/*.png",
-    "sharedScripts": "/**/*.js",
-    "requirejs": "/views/**/*.js"
+    "sharedScripts": "/**/*.js"
   },
   "tasks": {
     "default": ["shared_config", "dr-svg-sprites", "css", "BonnierCore:update", "javascript"],
@@ -101,7 +99,6 @@
     "javascript": ["webpack", "jshint"],
     "test": ["karma:dev"],
     "test:production": ["karma:production"],
-    "cssdocs": ["styleguide", "connect"],
     "watch-stylesheets": ["css"],
     "watch-sprites": ["dr-svg-sprites", "less:development"],
     "watch-scripts": ["javascript"],
