@@ -11,7 +11,7 @@ application.
 Install [Node.js](http://nodejs.org/) (which comes with npm). It's best to have
 npm version 1.2.x or above installed.
 
-Next, globally install the Flight generator. This will automatically install
+Next, globally install the DN generator. This will automatically install
 [Bower](http://bower.io/) and [Yo](http://yeoman.io/) as global dependencies.
 These tools will help manage your dependencies and generate the boilerplate
 Flight application.

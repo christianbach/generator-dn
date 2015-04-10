@@ -14,7 +14,6 @@
     "yo": ">=1.0.0"
   },
   "devDependencies": {
-    "mocha": "^1.21.0"
   },
   "scripts": {
   },
