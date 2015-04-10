@@ -75,7 +75,7 @@
     "sharedScripts":                      "/**/*.js"
   },
   "tasks": {
-    "default": ["shared_config", "dr-svg-sprites", "css", "BonnierCore:update", "javascript", "jshint"],
+    "default": ["shared_config", "dr-svg-sprites", "css", "BonnierCore:update", "javascript"],
     "production": ["clean", "shared_config", "dr-svg-sprites", "css-production", "BonnierCore:update", "javascript-production", "production-fonts", "hashres:production-sprites", "hashres:production-css", "string-replace:webpackhash", "assemblyinfo"],
     "css": ["shared_config", "less:development", "autoprefixer", "css-legacy", "cssmin"],
     "css-production": ["less:production", "autoprefixer", "css-legacy", "cssmin"],
